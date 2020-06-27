@@ -1,4 +1,4 @@
-package leetcode_algoritm;
+package leetcode_algorithm;
 
 
 // Definition for singly-linked list.
@@ -10,27 +10,27 @@ package leetcode_algoritm;
 
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode addValue =  new ListNode(0);       // ĞÂ½¨Ò»¸ö½Úµã£¬´ú±í½á¹ûµÄÍ·½áµã
-        ListNode p_cur = l1, q_cur = l2, current = addValue;   // ·Ö±ğÖ¸Ïò¼ÓÊı¡¢½á¹ûµÄµ±Ç°½Úµã
-        int flag = 0; // ÊÇ·ñ½øÎ»±êÖ¾Î»£¬³õÊ¼»¯Îª0
+        ListNode addValue =  new ListNode(0);       // æ–°å»ºä¸€ä¸ªèŠ‚ç‚¹ï¼Œä»£è¡¨ç»“æœçš„å¤´ç»“ç‚¹
+        ListNode p_cur = l1, q_cur = l2, current = addValue;   // åˆ†åˆ«æŒ‡å‘åŠ æ•°ã€ç»“æœçš„å½“å‰èŠ‚ç‚¹
+        int flag = 0; // æ˜¯å¦è¿›ä½æ ‡å¿—ä½ï¼Œåˆå§‹åŒ–ä¸º0
 
-        while ( p_cur != null || q_cur != null){        // Ñ­»·Ìõ¼ş£ºÈ«Îª¿Õ
-            int p = (p_cur != null) ? p_cur.val: 0;     // Èç¹ûÎª¿Õ£¬¾Í²¹×ã0
+        while ( p_cur != null || q_cur != null){        // å¾ªç¯æ¡ä»¶ï¼šå…¨ä¸ºç©º
+            int p = (p_cur != null) ? p_cur.val: 0;     // å¦‚æœä¸ºç©ºï¼Œå°±è¡¥è¶³0
             int q = (q_cur != null) ? q_cur.val: 0;
 
-            int temp = p + q + flag;    // ´øÉÏ±êÖ¾Î»µÄ¼Ó·¨
-            // ĞÂ½¨Ò»¸ö½Úµã£¬ÖµÎªÈ¡ÓàºóµÄ£¬²¢ÇÒÎªµ±Ç°½ÚµãµÄÏÂÒ»¸ö
+            int temp = p + q + flag;    // å¸¦ä¸Šæ ‡å¿—ä½çš„åŠ æ³•
+            // æ–°å»ºä¸€ä¸ªèŠ‚ç‚¹ï¼Œå€¼ä¸ºå–ä½™åçš„ï¼Œå¹¶ä¸”ä¸ºå½“å‰èŠ‚ç‚¹çš„ä¸‹ä¸€ä¸ª
             current.next = new ListNode(temp % 10); 
 
-            flag = temp / 10;   // ¸üĞÂµ±Ç°µÄ½øÎ»±êÖ¾Î»
+            flag = temp / 10;   // æ›´æ–°å½“å‰çš„è¿›ä½æ ‡å¿—ä½
 
-            current = current.next;     // ¸üĞÂÖ¸ÏòÏÂÒ»¸ö½Úµã
-            if(p_cur != null) p_cur = p_cur.next;   // Í¬ÉÏ
-            if(q_cur != null) q_cur = q_cur.next;   // Í¬ÉÏ
+            current = current.next;     // æ›´æ–°æŒ‡å‘ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
+            if(p_cur != null) p_cur = p_cur.next;   // åŒä¸Š
+            if(q_cur != null) q_cur = q_cur.next;   // åŒä¸Š
         }
         if (flag == 1){
             current.next = new ListNode(flag);
         }
-        return addValue.next;
+        return addValue.next; // æŒ‡å‘å¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ï¼Œå› ä¸ºåˆå§‹åˆ›å»ºçš„æ—¶å€™ï¼Œæœ‰ä¸€ä¸ªval=0çš„èŠ‚ç‚¹ï¼Œè¦å°†å…¶è·³è¿‡
     }
 }
