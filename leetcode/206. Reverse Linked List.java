@@ -6,25 +6,25 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-class Solution {			// ÎÒµÄ½â·¨¡ª¡ªµü´ú
+class Solution {			// æˆ‘çš„è§£æ³•â€”â€”è¿­ä»£ï¼šä»å‰å‘åéå†å¹¶ä¿®æ”¹
     public ListNode reverseList(ListNode head) {
-        ListNode prev =  null, curr = head, succ;   // ÉèÖÃ3¸ö½áµã£¬·Ö±ğ±íÊ¾Ç°Çı¡¢µ±Ç°¡¢ºó¼Ì½áµã
+        ListNode prev =  null, curr = head, succ;   // è®¾ç½®3ä¸ªç»“ç‚¹ï¼Œåˆ†åˆ«è¡¨ç¤ºå‰é©±ã€å½“å‰ã€åç»§ç»“ç‚¹
         while(curr != null){
-            succ = curr.next;   // succÖ¸ÏòcurrµÄÏÂÒ»¸ö£¨ÎªÁË±£´æÏÂÒ»¸öÒªĞŞ¸ÄµÄ½áµã£©
-            curr.next = prev;   // ¸Ã»»Ö¸ÏòµÄ½áµã
-            prev = curr;        //
-            curr = succ;
+            succ = curr.next;   // succæŒ‡å‘currçš„ä¸‹ä¸€ä¸ªï¼ˆä¸ºäº†ä¿å­˜ä¸‹ä¸€ä¸ªè¦ä¿®æ”¹çš„ç»“ç‚¹ï¼‰
+            curr.next = prev;   // currçš„æŒ‡å‘æ¢å‘ï¼ŒæŒ‡å‘å®ƒçš„å‰é©±
+            prev = curr;        // æ›´æ–°prevï¼ˆä¸ºå½“å‰ç»“ç‚¹ï¼Œç»™ä¸‹ä¸€æ¬¡å¾ªç¯ç”¨ï¼‰
+            curr = succ;        // æ›´æ–°currï¼ˆæ˜¯ä¸‹ä¸€æ¬¡å¾ªç¯çš„æ¢å‘ç»“ç‚¹ï¼‰
         }
         return prev;
     }
 }
 
-class recursiveSolution {		// ÁíÒ»ÖÖ½â·¨¡ª¡ªµİ¹é
+class recursiveSolution {		// å¦ä¸€ç§è§£æ³•â€”â€”é€’å½’
     public ListNode reverseList(ListNode head) {
-        if(head == null || head.next == null) return head;	// Ö÷Òª¾ÍÊÇ±éÀúÖ®ºó£¬¿ÉÒÔÖ¸ÏòÁ´±íÎ²½áµã£»head == null£¬Ö÷ÒªÊÇÎªÁËÅĞ¶ÏÁÙ½çÌõ¼ş£ºÁ´±íÎª¿Õ
-        ListNode curr = reverseList(head.next);		// curr¾ÍÊÇÖ¸ÏòÁ´±íÎ²
-        head.next.next = head;	// headÎªµ±Ç°½áµã£¬head.next:Ô­ÏÈµÄºó¼Ì½áµã£¬succ.nextÖ¸Ïòµ±Ç°½áµã£¬ÄÇÃ´¾ÍÄæĞòÁË
-        head.next = null;	// µ±Ç°½áµãµÄnextÒ»¶¨ÒªÎªnull£¬µ±µİ¹éµ½×îºóÊÇ£¬¸øÁ´±íÎ²£¨Ô­Á´±íÍ·£©×ö½Ø¶Ï£¬·ÀÖ¹³öÏÖ»·
+        if(head == null || head.next == null) return head;	// head.next == nullï¼Œä¸»è¦å°±æ˜¯éå†ä¹‹åï¼Œå¯ä»¥æŒ‡å‘é“¾è¡¨å°¾ç»“ç‚¹ï¼›head == nullï¼Œä¸»è¦æ˜¯ä¸ºäº†åˆ¤æ–­ä¸´ç•Œæ¡ä»¶ï¼šé“¾è¡¨ä¸ºç©º
+        ListNode curr = reverseList(head.next);		// currä¸€ç›´å°±æ˜¯æŒ‡å‘é“¾è¡¨å°¾ï¼Œé˜²æ­¢é€’å½’ä¸¢å¤±
+        head.next.next = head;	// headä¸ºå½“å‰ç»“ç‚¹ï¼Œhead.next:åŸå…ˆçš„åç»§ç»“ç‚¹ï¼Œsucc.nextæŒ‡å‘å½“å‰ç»“ç‚¹ï¼Œé‚£ä¹ˆå°±é€†åºäº†
+        head.next = null;	// å½“å‰ç»“ç‚¹çš„nextä¸€å®šè¦ä¸ºnullï¼Œå½“é€’å½’åˆ°æœ€åæ˜¯ï¼Œç»™é“¾è¡¨å°¾ï¼ˆåŸé“¾è¡¨å¤´ï¼‰åšæˆªæ–­ï¼Œé˜²æ­¢å‡ºç°ç¯
         return curr;
     }
 }
