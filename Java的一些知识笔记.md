@@ -166,7 +166,7 @@ LinkedList的适用场景
 - 需要频繁的在开头、中间、末尾的位置进行增、删操作
 - 通过循坏迭代来访问链表中的某些元素
 
-### 3）Queue
+### 3）Queue：队列
 
 队列是一种特殊的线性表，只能够在表头进行删除，在表尾进行插入——先进先出
 
@@ -213,5 +213,55 @@ LinkedList的适用场景
   queue.isEmpty();
   ```
 
+### 4）Collections： 工具类
+
+**Collections**（注意，不是collection集合），是JDK提供的一个工具类，包含了一系列的静态方法，**方便操作各种集合**。
+
+- Collections的用法
+
+  （1）需要导入包
+
+  ```java
+  import java.util.Collections;		// 注意C是大写
+  ```
+
+  （2）一些方法
+
+  可以给一个`Collection`类型的集合进行操作，因为方法签名是`Collection`，所以可以传入`List, Set`等类型对象
+
+  ```java
+  public static boolean addAll(Collection<? super T> c, T... elements) { ... }	// addAll 方法的声明
+  ```
+
+  ```java
+  LinkedList<Integer> list = new LinkedList<Integer>();		// 创建一个 collection dui'xiang
   
+  Collections.addAll(list, 1,2,3,4,5,6);			// 向 list 对象中添加后面的所有元素，元素之间通过","分隔
+  
+  Collections.max(list);			// 求 list 对象的最大值，与Math.max的区别是，前者是对一个集合对象的最大值求取，而后者是求两个值之间的大者
+  Collections.min(list);			// 求 list 对象的最小值
+  
+  Collections.sort(list);			// 会对 list 进行排序，是升序排列
+  
+  Collections.shuffle(list);		// 会随机将 list 的内容打乱，俗称洗牌
+  ```
+
+### 5）集合的嵌套使用
+
+```java
+// 初始化
+List<List<Integer>> list = new ArrayList<>();		// 不用指定其泛型
+
+/* 两层，需要添加其层和层里面的值 */
+list.add(new ArrayList());		// 添加一层——本质上就是添加一个元素，而该元素的本质是 ArrayList 对象
+list.get(0).add(1);				// 获得list的元素（本质上是数组），而对这个元素（数组）进行操作——添加一个元素
+list.add(new ArrayList());
+list.get(1).add(2);
+list.get(1).add(3);
+// 最后的数组是：
+[
+    [0],
+    [1, 2]
+]
+```
 
