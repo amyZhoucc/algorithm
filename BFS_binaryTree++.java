@@ -6,7 +6,7 @@ public class TreeNode {
 	TreeNode(int x) { val = x; }
  }
 
-public void levelOrder(TreeNode root){
+public void levelOrder(TreeNode root){          // 宽度优先遍历
     if(root == null) return null;		// 处理特殊情况
     LinkedList<TreeNode> queue = new LinkedList<TreeNode>();		// 存放当前层级的节点
     queue.offer(root);		// 将根节点压入栈
