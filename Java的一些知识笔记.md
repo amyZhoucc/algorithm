@@ -267,3 +267,17 @@ list.get(1).add(3);
 
 ## 2.  Java数组
 
+## 3. String
+
+字符串，这个操作和C++有些区别
+
+目前用到的：
+
+```java
+String s = "ilovemilk"
+for(int i = 0; i < s.length(); i++){		// s.length() => 求字符串长度
+    char temp = s.charAt(i);		// s.charAt(i) 获得当前位置的字符
+    ......
+}
+```
+
