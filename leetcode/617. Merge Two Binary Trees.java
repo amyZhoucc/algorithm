@@ -7,40 +7,45 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-class Solution {            // µİ¹é½â·¨£¬ĞèÒªÌôÑ¡Ò»¸öroot×÷Îª±»¼ÓÊ÷£¬ÁíÒ»¸öroot×÷Îª¼ÓÊ÷
+class Solution {            // é€’å½’è§£æ³•ï¼Œéœ€è¦æŒ‘é€‰ä¸€ä¸ªrootä½œä¸ºè¢«åŠ æ ‘ï¼Œå¦ä¸€ä¸ªrootä½œä¸ºåŠ æ ‘
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {  
-        if(t1 == null && t2 == null) return null;           // µİ¹éµÄÖÕÖ¹Ìõ¼ş
-        else if(t1 == null && t2 != null) return t2;        // ¸Ã½Úµã·Çnull£¬ÄÇ¾Í·µ»Ø¸Ã½Úµã¼´¿É
+        if(t1 == null && t2 == null) return null;           // é€’å½’çš„ç»ˆæ­¢æ¡ä»¶
+        else if(t1 == null && t2 != null) return t2;        // è¿˜å¯ä»¥ç®€åŒ–ä¸€ä¸‹çš„
         else if(t1 != null && t2 == null) return t1;
 
         TreeNode left = mergeTrees(t1.left, t2.left);
         TreeNode right = mergeTrees(t1.right, t2.right);
         t1.left = left;
         t1.right = right;
-        t1.val += t2.val;                                   // Èç¹ûÁ½¸ö½Úµã¶¼´æÔÚ£¬¾ÍĞèÒªÏà¼Ó
+        t1.val += t2.val;                                   // å¦‚æœä¸¤ä¸ªèŠ‚ç‚¹å‡å­˜åœ¨ï¼Œé‚£ä¹ˆéœ€è¦å€¼ç›¸åŠ 
         return t1;
     }
 }
 
 */
-class Solution {        // µü´ú½â·¨£¬t1×÷Îª±»¼ÓÊ÷
+class Solution {        // è¿­ä»£è§£æ³•ï¼Œä¸”t1ä½œä¸ºè¢«åŠ æ ‘
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
-        if(t1 == null) return t2;           // ÅÅ³ıÌØÊâÇé¿ö
+        if(t1 == null) return t2;           // å¤„ç†ç‰¹æ®Šæƒ…å†µ
         else if(t2 == null) return t1;
 
-        LinkedList<TreeNode[]> queue = new LinkedList<>();      // ´æ·Å±éÀúÊ±µÄ½ÚµãµÄ×óÓÒº¢×Ó½Úµã
-        queue.offer(new TreeNode[] {t1, t2});           // ³õÊ¼·ÅÈë¸ù½Úµã
-        while(!queue.isEmpty()){
-            TreeNode[] current = queue.poll();
-            if(current[0] == null || current[1] == null) continue;      // Ö»ÒªÓĞÒ»¸ö½ÚµãÎª¿Õ£¬ÄÇÃ´ÒÔÕâ¸ö½ÚµãÎªÊ÷¾Í²»ĞèÒª²Ù×÷ÁË£¬Ìø¹ıÏÂÃæµÄ²½Öè
+        LinkedList<TreeNode[]> queue = new LinkedList<>();      // æ„å»ºä¸€ä¸ªé˜Ÿåˆ—å­˜æ”¾éå†çš„èŠ‚ç‚¹ï¼Œä¸”å…ƒç´ æ˜¯æ•°ç»„
+        queue.offer(new TreeNode[] {t1, t2});               // å°†æ ¹èŠ‚ç‚¹æ’å…¥é˜Ÿåˆ—ä¸­â€”â€”è¿™è¾¹èƒ½ä¿è¯æ ¹èŠ‚ç‚¹ä¸€å®šå­˜åœ¨
+
+        while(!queue.isEmpty()){                // å½“é˜Ÿåˆ—ä¸ä¸ºç©º
+            TreeNode[] current = queue.poll();          // å¼¹å‡ºå½“å‰èŠ‚ç‚¹
+            if(current[0] == null || current[1] == null){       // é˜²æ­¢ä¸‹é¢çš„åŠ æ“ä½œæŠ¥é”™â€”â€”å› ä¸ºä¸‹é¢ä¸¤ä¸ªelseï¼Œå­˜åœ¨t2ä¸ºnullçš„æƒ…å†µ
+                continue;
+            }
             current[0].val += current[1].val;
-            if(current[0].left == null){                    // Èç¹ût1µÄ×óº¢×ÓÎªnull£¬ÄÇÃ´¾Í°Ñt2µÄ×óº¢×Óµ±×÷t1µÄ×óº¢×Ó£¬µ«ÊÇ²»ĞèÒªÔÙ±éÀúÁË
+
+            if(current[0].left == null) {           // t1çš„å·¦å­©å­ä¸ºç©ºï¼Œé‚£ä¹ˆç›´æ¥å°†t2çš„å·¦å­©å­å½“ä½œt1çš„å·¦å­©å­
                 current[0].left = current[1].left;
             }
-            else{                                           // 2ÖÖÇé¿ö£ºleft²»Îªnull£¬rightÎªnull/Á½¸ö¾ù²»Îªnull
+            else{                             //t1çš„å·¦å­©å­ä¸ä¸ºç©ºï¼Œé‚£ä¹ˆåŠ å…¥é˜Ÿåˆ—ï¼Œå­˜åœ¨ä¸¤ç§æƒ…å†µï¼št1!=null t2!=null/t1!=null t2==null
                 queue.offer(new TreeNode[] {current[0].left, current[1].left});
             }
-            if(current[0].right == null){   // Í¬×ó×ÓÊ÷
+
+            if(current[0].right == null){           // åŒå·¦å­©å­
                 current[0].right = current[1].right;
             }
             else{
