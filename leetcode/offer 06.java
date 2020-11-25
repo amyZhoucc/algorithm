@@ -6,21 +6,36 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-class Solution {
-    public LinkedList<Integer> temp = new LinkedList<Integer>();
+class Solution {                // 递归解法
+    private LinkedList<Integer>store = new LinkedList<Integer>();       // 注意类似于全局变量
+    private void recursive(ListNode head){          // 递归函数
+        if(head == null) return;            // 递归终止条件
+        recursive(head.next);           // 一直深入找到链表尾结点
+        store.offer(head.val);      // 到这一步说明递已经结束了，现在开始归——就是将当前节点插入到队列中
+    }
     public int[] reversePrint(ListNode head) {
-        recursive(head);            // 首先先去进行递归操作
-        int[] res = new int[temp.size()];
+        recursive(head);        // 首先调用递归函数，将节点加入到队列中
+        int[] res = new int[store.size()];
         int i = 0;
-        while(!temp.isEmpty()){
-            res[i] = temp.poll();
-            i++;
+        while(!store.isEmpty()){            // 将队列中的节点依次出队，转换成数组
+            res[i++] = store.poll();
         }
         return res;
     }
-    public void recursive(ListNode head){
-        if(head == null) return;        // 如果遍历到链表尾了，就直接返回
-        recursive(head.next);           // 非链表尾就继续去调用
-        temp.offer(head.val);                 // 到这一步，说明已经开始回溯了，那么就加入队列中
+}
+
+class Solution {                // 调用栈求解
+    public int[] reversePrint(ListNode head) {
+        LinkedList<Integer> store = new LinkedList<Integer>();      // 这个就是栈
+        while(head != null){
+            store.addLast(head.val);        // 后面为栈顶
+            head = head.next;
+        }
+        int[] res = new int[store.size()];
+        int i = 0;
+        while(!store.isEmpty()){
+            res[i++] = store.pollLast();        // 取从栈顶开始取（从下标大的开始取出）
+        }
+        return res;
     }
 }
