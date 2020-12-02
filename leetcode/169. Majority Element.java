@@ -58,7 +58,7 @@ class Solution {            // 分治法
     }
 }
 
-class Solution {
+class Solution {           // 投票算法
     public int majorityElement(int[] nums) {
         Integer candidate = null;
         int count = 0;
